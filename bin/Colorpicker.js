@@ -14,7 +14,7 @@
 
 define('package/quiqqer/colorpicker/bin/Colorpicker', [
 
-    "controls/Controls",
+    "controls/Control",
     "css!package/quiqqer/colorpicker/bin/Colorpicker.css"
 
 ], function(QUI_Control)
@@ -24,22 +24,23 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
         Implements : [ QUI_Control ],
 
         options: {
-            id: 'mooRainbow',
-            prefix: 'moor-',
-            imgPath: 'images/',
-            startColor: [255, 0, 0],
-            wheel: false,
-            onComplete: Class.empty,
-            onChange: Class.empty
+            id         : 'mooRainbow',
+            prefix     : 'moor-',
+            imgPath    : URL_DIR +'packages/quiqqer/colorpicker/bin/images/',
+            startColor : [255, 0, 0],
+            wheel      : false,
+            onComplete : Class.empty,
+            onChange   : Class.empty
         },
 
-        initialize: function(el, options) {
-            this.element = document.id(el); if (!this.element) return;
-            this.setOptions(options);
+        initialize: function(el, options)
+        {
+            this.element = document.id( el ); if ( !this.element ) return;
+            this.setOptions( options );
 
-            this.sliderPos = 0;
-            this.pickerPos = {x: 0, y: 0};
-            this.backupColor = this.options.startColor;
+            this.sliderPos    = 0;
+            this.pickerPos    = {x: 0, y: 0};
+            this.backupColor  = this.options.startColor;
             this.currentColor = this.options.startColor;
             this.sets = {
                 rgb: [],
@@ -69,24 +70,28 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             if (window.khtml) this.hide();
         },
 
-        toggle: function() {
+        toggle: function()
+        {
             this[this.visible ? 'hide' : 'show']()
         },
 
-        show: function() {
+        show: function()
+        {
             this.rePosition();
             this.layout.setStyle('display', 'block');
             this.layout.set('aria-hidden', 'false');
             this.visible = true;
         },
 
-        hide: function() {
+        hide: function()
+        {
             this.layout.setStyles({'display': 'none'});
             this.layout.set('aria-hidden', 'true');
             this.visible = false;
         },
 
-        manualSet: function(color, type) {
+        manualSet: function(color, type)
+        {
             if (!type || (type != 'hsb' && type != 'hex')) type = 'rgb';
             var rgb, hsb, hex;
 
@@ -98,7 +103,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             this.autoSet(hsb);
         },
 
-        autoSet: function(hsb) {
+        autoSet: function(hsb)
+        {
             var curH = this.snippet('curSize', 'int').h;
             var curW = this.snippet('curSize', 'int').w;
             var oveH = this.layout.overlay.height;
@@ -122,7 +128,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             this.pickerPos.y = this.snippet('curPos').t + curH;
         },
 
-        setMooRainbow: function(color, type) {
+        setMooRainbow: function(color, type)
+        {
             if (!type || (type != 'hsb' && type != 'hex')) type = 'rgb';
             var rgb, hsb, hex;
 
@@ -154,7 +161,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             this.fireEvent('onChange', [this.sets, this]);
         },
 
-        parseColors: function(x, y, z) {
+        parseColors: function(x, y, z)
+        {
             var s = Math.round((x * 100) / this.layout.overlay.width);
             var b = 100 - Math.round((y * 100) / this.layout.overlay.height);
             var h = 360 - Math.round((z * 360) / this.layout.slider.height) + this.snippet('slider') - this.snippet('arrSize', 'int');
@@ -166,7 +174,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             return [h, s, b];
         },
 
-        OverlayEvents: function() {
+        OverlayEvents: function()
+        {
             var lim, curH, curW, inputs;
             curH = this.snippet('curSize', 'int').h;
             curW = this.snippet('curSize', 'int').w;
@@ -223,7 +232,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             }.bind(this));
         },
 
-        overlayDrag: function() {
+        overlayDrag: function()
+        {
             var curH = this.snippet('curSize', 'int').h;
             var curW = this.snippet('curSize', 'int').w;
             this.pickerPos.x = this.snippet('curPos').l + curW;
@@ -233,7 +243,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             this.fireEvent('onChange', [this.sets, this]);
         },
 
-        sliderEvents: function() {
+        sliderEvents: function()
+        {
             var arwH = this.snippet('arrSize', 'int'), lim;
 
             lim = [0 + this.snippet('slider') - arwH, this.layout.slider.height - arwH + this.snippet('slider')];
@@ -254,7 +265,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             }.bind(this));
         },
 
-        sliderDrag: function() {
+        sliderDrag: function()
+        {
             var arwH = this.snippet('arrSize', 'int'), hue;
 
             this.sliderPos = this.snippet('arrPos') - arwH;
@@ -264,14 +276,17 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             this.fireEvent('onChange', [this.sets, this]);
         },
 
-        backupEvent: function() {
-            this.layout.backup.addEvent('click', function() {
+        backupEvent: function()
+        {
+            this.layout.backup.addEvent('click', function()
+            {
                 this.manualSet(this.backupColor);
                 this.fireEvent('onChange', [this.sets, this]);
             }.bind(this));
         },
 
-        wheelEvents: function() {
+        wheelEvents: function()
+        {
             var arrColors = this.arrRGB.copy().extend(this.arrHSB);
 
             arrColors.each(function(el) {
@@ -297,7 +312,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             }, this);
         },
 
-        eventKeys: function(e, el, id) {
+        eventKeys: function(e, el, id)
+        {
             var wheel, type;
             id = (!id) ? el.id : this.arrHSB[0];
 
@@ -311,12 +327,14 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             else if (this.arrHSB.test(el)) type = 'hsb';
             else type = 'hsb';
 
-            if (type == 'rgb') {
+            if (type == 'rgb')
+            {
                 var rgb = this.sets.rgb, hsb = this.sets.hsb, prefix = this.options.prefix, pass;
                 var value = el.value.toInt() + wheel;
                 value = (value > 255) ? 255 : (value < 0) ? 0 : value;
 
-                switch(el.className) {
+                switch(el.className)
+                {
                     case prefix + 'rInput': pass = [value, rgb[1], rgb[2]]; break;
                     case prefix + 'gInput': pass = [rgb[0], value, rgb[2]]; break;
                     case prefix + 'bInput': pass = [rgb[0], rgb[1], value]; break;
@@ -324,7 +342,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
                 }
                 this.manualSet(pass);
                 this.fireEvent('onChange', [this.sets, this]);
-            } else {
+            } else
+            {
                 var rgb = this.sets.rgb, hsb = this.sets.hsb, prefix = this.options.prefix, pass;
                 var value = el.value.toInt() + wheel;
 
@@ -343,7 +362,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             e.stop();
         },
 
-        eventKeydown: function(el, e) {
+        eventKeydown: function(el, e)
+        {
             var n = e.code, k = e.key;
 
             if  ((!el.className.test(/hexInput/) && !(n >= 48 && n <= 57)) &&
@@ -351,7 +371,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             e.stop();
         },
 
-        eventKeyup: function(el, e) {
+        eventKeyup: function(el, e)
+        {
             var n = e.code, k = e.key, pass, prefix, chr = el.value.charAt(0);
 
             if (!(el.value || el.value === 0)) return;
@@ -399,7 +420,8 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
 
         },
 
-        doLayout: function() {
+        doLayout: function()
+        {
             var id = this.options.id, prefix = this.options.prefix;
             var idPrefix = id + ' .' + prefix;
 
@@ -514,19 +536,20 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             this.rePosition();
 
             var overlays = $$('#' + idPrefix + 'overlay');
-            this.layout.overlay = overlays[0];
+
+            this.layout.overlay  = overlays[0];
             this.layout.overlay2 = overlays[1];
-            this.layout.cursor = Slick.find(document, '#' + idPrefix + 'cursor');
-            this.layout.arrows = Slick.find(document, '#' + idPrefix + 'arrows');
-            this.chooseColor = Slick.find(document, '#' + idPrefix + 'chooseColor');
-            this.layout.backup = Slick.find(document, '#' + idPrefix + 'currentColor');
-            this.RedInput = Slick.find(document, '#' + idPrefix + 'rInput');
-            this.GreenInput = Slick.find(document, '#' + idPrefix + 'gInput');
-            this.BlueInput = Slick.find(document, '#' + idPrefix + 'bInput');
-            this.HueInput = Slick.find(document, '#' + idPrefix + 'HueInput');
-            this.SatuInput = Slick.find(document, '#' + idPrefix + 'SatuInput');
-            this.BrighInput = Slick.find(document, '#' + idPrefix + 'BrighInput');
-            this.hexInput = Slick.find(document, '#' + idPrefix + 'hexInput');
+            this.layout.cursor   = Slick.find(document, '#' + idPrefix + 'cursor');
+            this.layout.arrows   = Slick.find(document, '#' + idPrefix + 'arrows');
+            this.chooseColor     = Slick.find(document, '#' + idPrefix + 'chooseColor');
+            this.layout.backup   = Slick.find(document, '#' + idPrefix + 'currentColor');
+            this.RedInput        = Slick.find(document, '#' + idPrefix + 'rInput');
+            this.GreenInput      = Slick.find(document, '#' + idPrefix + 'gInput');
+            this.BlueInput       = Slick.find(document, '#' + idPrefix + 'bInput');
+            this.HueInput        = Slick.find(document, '#' + idPrefix + 'HueInput');
+            this.SatuInput       = Slick.find(document, '#' + idPrefix + 'SatuInput');
+            this.BrighInput      = Slick.find(document, '#' + idPrefix + 'BrighInput');
+            this.hexInput        = Slick.find(document, '#' + idPrefix + 'hexInput');
 
             this.arrRGB = [this.RedInput, this.GreenInput, this.BlueInput];
             this.arrHSB = [this.HueInput, this.SatuInput, this.BrighInput];
@@ -536,36 +559,40 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
 
             if (!window.khtml) this.hide();
         },
-        rePosition: function() {
+
+        rePosition: function()
+        {
             var coords = this.element.getCoordinates();
             this.layout.setStyles({
-                'left': coords.left,
-                'top': coords.top + coords.height + 1
+                'left' : coords.left,
+                'top'  : coords.top + coords.height + 1
             });
         },
 
-        snippet: function(mode, type) {
+        snippet: function(mode, type)
+        {
             var size; type = (type) ? type : 'none';
 
-            switch(mode) {
+            switch(mode)
+            {
                 case 'arrPos':
                     var t = this.layout.arrows.getStyle('top').toInt();
                     size = t;
-                    break;
+                break;
                 case 'arrSize':
                     var h = this.layout.arrows.height;
                     h = (type == 'int') ? (h/2).toInt() : h;
                     size = h;
-                    break;
+                break;
                 case 'curPos':
                     var l = this.layout.cursor.getStyle('left').toInt();
                     var t = this.layout.cursor.getStyle('top').toInt();
                     size = {'l': l, 't': t};
-                    break;
+                break;
                 case 'slider':
                     var t = this.layout.slider.getStyle('marginTop').toInt();
                     size = t;
-                    break;
+                break;
                 default :
                     var h = this.layout.cursor.height;
                     var w = this.layout.cursor.width;
@@ -576,5 +603,4 @@ define('package/quiqqer/colorpicker/bin/Colorpicker', [
             return size;
         }
     });
-
 });
