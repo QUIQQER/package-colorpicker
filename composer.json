@@ -1,0 +1,33 @@
+{
+	"name" : "quiqqer/colorpicker",
+	"description" : "Mootools Colorpicker Widget for QUIQQER",
+	"tags" : ["colorpicker", "quiqqer"],
+	"version" : "1.0.0",
+	"author" : [{
+        "name": "Henning Leutz",
+        "email": "leutz@pcsg.de",
+        "homepage": "http://www.pcsg.de",
+        "role": "Developer"
+    }, {
+        "name": "Djamil Legato (w00fz)",
+        "homepage": "http://moorainbow.woolly-sheep.net/",
+        "role": "Developer"
+    }, {
+        "name": "Christopher Beloch",
+        "homepage": "https://github.com/CBeloch/mooRainbow",
+        "role": "Developer"
+    }],
+
+	"repositories" : {
+        "type" : "git",
+      	"url"  : "ssh://git@rico/~/repositories/packages/colorpicker.git"
+    },
+
+    "bugs" : {
+        "url" : "http://bugs.quiqqer.com/colorpicker"
+    },
+
+    "require": {
+        "quiqqer/quiqqer" : "1.*"
+    }
+}
