@@ -1,5 +1,6 @@
 {
 	"name" : "quiqqer/colorpicker",
+	"type" : "quiqqer-library",
 	"description" : "Mootools Colorpicker Widget for QUIQQER",
 	"tags" : ["colorpicker", "quiqqer"],
 	"version" : "1.0.0",
