@@ -1,12 +1,12 @@
 {
-	"name" : "quiqqer/colorpicker",
-	"type" : "quiqqer-library",
-	"description" : "Mootools Colorpicker Widget for QUIQQER",
+    "name" : "quiqqer/colorpicker",
+    "type" : "quiqqer-library",
+    "description" : "Mootools Colorpicker Widget for QUIQQER",
 
-	"version" : "1.0.0",
+    "version" : "dev-dev",
     "license" : "MIT",
 
-	"authors" : [{
+    "authors" : [{
         "name": "Henning Leutz",
         "email": "leutz@pcsg.de",
         "homepage": "http://www.pcsg.de",
@@ -26,6 +26,6 @@
     },
 
     "require": {
-        "quiqqer/quiqqer" : "1.*"
+        "quiqqer/quiqqer" : "dev-master"
     }
 }
