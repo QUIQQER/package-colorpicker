@@ -26,6 +26,6 @@
     },
 
     "require": {
-        "quiqqer/quiqqer" : "*"
+        "quiqqer/quiqqer" : "*@dev"
     }
 }
