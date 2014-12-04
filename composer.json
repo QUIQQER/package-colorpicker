@@ -26,6 +26,6 @@
     },
 
     "require": {
-        "quiqqer/quiqqer" : "1.*"
+        "quiqqer/quiqqer" : "~1"
     }
 }
