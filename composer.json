@@ -1,31 +1,30 @@
 {
-    "name" : "quiqqer/colorpicker",
-    "type" : "quiqqer-library",
-    "description" : "Provides various colorpicker controls / elements.",
-
-    "version" : "dev-dev",
-    "license" : "MIT",
-
-    "authors" : [{
-        "name": "Henning Leutz",
-        "email": "leutz@pcsg.de",
-        "homepage": "http://www.pcsg.de",
-        "role": "Developer"
-    }, {
-        "name": "Djamil Legato (w00fz)",
-        "homepage": "http://moorainbow.woolly-sheep.net/",
-        "role": "Developer"
-    }, {
-        "name": "Christopher Beloch",
-        "homepage": "https://github.com/CBeloch/mooRainbow",
-        "role": "Developer"
-    }],
-
-    "support" : {
-        "mail" : "support@pcsg.de"
+    "name": "quiqqer\/colorpicker",
+    "type": "quiqqer-library",
+    "description": "Provides various colorpicker controls \/ elements.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Henning Leutz",
+            "email": "leutz@pcsg.de",
+            "homepage": "http:\/\/www.pcsg.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Djamil Legato (w00fz)",
+            "homepage": "http:\/\/moorainbow.woolly-sheep.net\/",
+            "role": "Developer"
+        },
+        {
+            "name": "Christopher Beloch",
+            "homepage": "https:\/\/github.com\/CBeloch\/mooRainbow",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "mail": "support@pcsg.de"
     },
-
     "require": {
-        "quiqqer/quiqqer" : "*@dev"
+        "quiqqer\/quiqqer": "*@dev"
     }
 }
